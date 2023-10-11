@@ -1,6 +1,10 @@
 import { createContext } from "react";
+import { UserInterface } from "./interfaces";
 
-const defaultContext = {
+const defaultContext: {
+  user: UserInterface | null,
+  token: string | null
+} = {
   user: null,
   token: null
 }

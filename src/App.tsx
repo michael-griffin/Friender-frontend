@@ -1,35 +1,35 @@
 import './App.css';
 import { useState, useEffect } from "react";
-import api from './api';
-import {BrowserRouter} from "react-router-dom";
 import userContext from "./userContext";
-
-import RoutesList from "./RoutesList";
-import Navbar from "./Navbar";
-import isLoading from "./isLoading";
+import {BrowserRouter} from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import FrienderAPI from './api';
+import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from './interfaces';
+import RoutesList from "./RoutesList";
+import Navbar from './Navbar';
+import IsLoading from "./IsLoading";
 
 
 function App() {
 
 
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [user, setUser] = useState<UserInterface | null>(null);
+  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [isLoaded, setIsLoaded] = useState(false);
 
-  function updateToken(token) {
+  function updateToken(token: string | null) {
     setToken(token);
     (token) ?
       localStorage.setItem("token", token) :
       localStorage.removeItem("token");
   }
 
-  async function signup(formData){
-    const token = await FrienderAPI.registerUser(formData);
+  async function signup(formData: SignupInterface){
+    const token = await FrienderAPI.signupUser(formData);
     updateToken(token);
   }
 
-  async function login(formData){
+  async function login(formData: LoginInterface){
     const token = await FrienderAPI.loginUser(formData);
     updateToken(token);
   }
@@ -39,7 +39,7 @@ function App() {
     updateToken(null);
   }
 
-  async function update(formData){
+  async function update(formData: UpdateInterface){
     const newUser = await FrienderAPI.updateUser(formData);
     setUser(newUser);
   }
@@ -49,8 +49,8 @@ function App() {
       if (token){
         try {
           FrienderAPI.token = token;
-          const decoded = jwt_decode(token);
-          const userData = await FrienderAPI.getUserInfo(decoded.username);
+          const decoded: {username: string}  = jwt_decode(token);
+          const userData: UserInterface = await FrienderAPI.getUserInfo(decoded.username);
           setUser(userData);
         } catch(err) {
           console.log()
@@ -72,7 +72,7 @@ function App() {
           </BrowserRouter>
         </userContext.Provider>
         :
-        <isLoading />
+        <IsLoading />
       }
     </div>
   );

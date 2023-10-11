@@ -1,12 +1,13 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Homepage from "./HomePage";
+import Homepage from "./Homepage";
 import FriendList from "./FriendList";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
+import { UserInterface } from "./interfaces";
 
 
 interface RoutesListInterface {
-  user: {};
+  user: UserInterface | null;
   signup: ({ }) => void;
   login: ({ }) => void;
   update: ({ }) => void;
