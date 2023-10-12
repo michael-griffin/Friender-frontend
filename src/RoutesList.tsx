@@ -26,11 +26,13 @@ function RoutesList({ user, signup, login, update }: RoutesListInterface) {
         :
         <>
           <Route path="/" element={<Homepage />} />
-          <Route path="/signup" element={<SignupForm signup={signup} />} />
-          <Route path="/login" element={<LoginForm login={login} />} />
+          <Route path="/signup" element={<SignupForm handleSubmit={signup} />} />
+          <Route path="/login" element={<LoginForm handleSubmit={login} />} />
         </>
       }
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
+
+export default RoutesList;

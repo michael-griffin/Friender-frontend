@@ -7,7 +7,7 @@ import FrienderAPI from './api';
 import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from './interfaces';
 import RoutesList from "./RoutesList";
 import Navbar from './Navbar';
-import IsLoading from "./IsLoading";
+import IsLoading from './isLoading';
 
 
 function App() {
@@ -64,7 +64,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar logout={logout}/>
+      <Navbar logout={logout} user={user}/>
       {isLoaded ?
         <userContext.Provider value={{ user, token }}>
           <BrowserRouter>

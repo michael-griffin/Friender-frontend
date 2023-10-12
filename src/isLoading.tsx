@@ -1,7 +1,9 @@
 function IsLoading() {
-  return (<div>
+  return (
+    <div>
 
-  </div>);
+    </div>
+  );
 }
 
 export default IsLoading;
