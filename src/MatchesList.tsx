@@ -21,7 +21,7 @@ function MatchesList({user}: MatchListProps) {
 
     return(<div>
         <h2>Matches:</h2>
-        {matches ? matches.map(m => <FriendCard user={m} key={m.username}/>) : <IsLoading />}
+        {matches ? matches.map(m => <MatchCard user={user}  match={m} key={m.username}/>) : <IsLoading />}
     </div>)
 }
 export default MatchesList

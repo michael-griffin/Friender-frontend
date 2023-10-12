@@ -30,6 +30,7 @@ function RoutesList({ user, signup, login, update, addImage }: RoutesListInterfa
           <Route path='/profile/add-image' element={<ProfileImageform handleSubmit={addImage}/>} />
           <Route path="/people" element={<FriendList user={user} />} />
           <Route path='/matches' element={<MatchesList user={user} />} />
+          <Route path='/messages/:matchName' element={<MessageLog user={user} />} />
         </>
         :
         <>

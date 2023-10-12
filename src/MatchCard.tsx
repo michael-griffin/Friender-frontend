@@ -1,0 +1,20 @@
+// import './FriendCard.css'
+import {Link} from "react-router-dom";
+import FriendCard from "./FriendCard";
+function MatchCard( {user, match} ){
+
+  const {username, hobbies, interests, image_urls} = match;
+
+  return (
+    <>
+      <FriendCard user={match} />
+      <Link to={`/messages/${match.username}`}><button>View Messages</button></Link>
+    </>
+  )
+}
+
+
+
+
+
+export default MatchCard;

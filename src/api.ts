@@ -118,6 +118,18 @@ class FrienderAPI {
       headers: {'Content-Type': 'application/json', 'token': this.token}
     })
   }
+
+  static async addMessage(sender, receiver, message): Promise<void> {
+    const response = await fetch(`${BASE_URL}/users/${sender}/message`, {
+      method: 'POST',
+      body: JSON.stringify({
+        sender,
+        receiver,
+        message
+      }),
+      headers: {'Content-Type': 'application/json', 'token': this.token}
+    })
+  }
 }
 
 export default FrienderAPI;
