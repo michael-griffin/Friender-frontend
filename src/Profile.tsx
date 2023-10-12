@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom"
+import FriendCard from "./FriendCard";
 
 
-
-function Profile() {
+function Profile({user}) {
 
     function handleFileSubmit(evt){
         evt.preventDefault();
@@ -16,8 +17,11 @@ function Profile() {
         })
     }
 
+    // {username, hobbies, interests, images}:
     return (
         <div className="Profile">
+            <FriendCard user={user} />
+            <Link to="/profile/edit" ><button >Edit Profile</button></Link>
             <form encType="multipart/form-data">
                 <button>Add Image</button>
             </form>

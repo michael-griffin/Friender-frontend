@@ -1,9 +1,10 @@
 import { UserInterface } from "./interfaces";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import FriendCard from "./FriendCard";
+import RatingForm from "./RatingForm";
 import FrienderAPI from "./api";
 
-function FriendList({ user }: {user: UserInterface}) {
+function FriendList({ user }: { user: UserInterface; }) {
 
   const [users, setUsers] = useState(null);
 
@@ -18,8 +19,12 @@ function FriendList({ user }: {user: UserInterface}) {
 
   return (
     <div className="FriendList">
-      {users.map(({username, hobbies, interests, images} ) => (
-        <FriendCard username={username} hobbies={hobbies} interests={interests} images={images}/>
+      {users.map(({ username, hobbies, interests, images }) => (
+        <>
+          <FriendCard user={user} />
+          <RatingForm />
+        </>
+
       ))}
     </div>
   );

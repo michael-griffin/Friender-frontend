@@ -1,15 +1,16 @@
-import RatingForm from "./RatingForm";
 
-interface FriendCardProps {
-    username: string;
-    hobbies: string;
-    interests: string;
-    images: string[]
-}
 
-function FriendCard({username, hobbies, interests, images}: FriendCardProps){
+// interface FriendCardProps {
+//     username: string;
+//     hobbies: string;
+//     interests: string;
+//     images: string[]
+// }
 
-    const profilePic = images[0];
+function FriendCard( {user} ){
+    const {username, hobbies, interests, image_urls} = user;
+
+    const profilePic = image_urls[0];
 
     return (
         <div className="FriendCard">
@@ -17,7 +18,6 @@ function FriendCard({username, hobbies, interests, images}: FriendCardProps){
             <h2>{username}</h2>
             <p>Hobbies are: {hobbies}</p>
             <p>Interests include: {interests}</p>
-            <RatingForm />
         </div>
     )
 }

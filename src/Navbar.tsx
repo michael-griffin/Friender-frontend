@@ -5,7 +5,7 @@ function Navbar({user, logout}) {
 
 
     return(<nav className='Navbar'>
-        <h1 className='Navbar-logo'>Friender</h1>
+        <Link to="/"><h1 className='Navbar-logo'>Friender</h1></Link>
         <div className='Navbar-links'>
             {!user && <>
                 <NavLink to='/login'>Login</NavLink>

@@ -3,6 +3,8 @@ import Homepage from "./Homepage";
 import FriendList from "./FriendList";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
+import Profile from "./Profile";
+import ProfileForm from "./ProfileForm";
 import { UserInterface } from "./interfaces";
 
 
@@ -20,7 +22,8 @@ function RoutesList({ user, signup, login, update }: RoutesListInterface) {
       {user ?
         <>
           <Route path="/" element={<Homepage />} />
-          <Route path="/profile" />
+          <Route path="/profile" element={<Profile user={user}/> } />
+          <Route path="/profile/edit" element={<ProfileForm user={user} handleSubmit={update} />} />
           <Route path="/people" element={<FriendList user={user} />} />
         </>
         :
