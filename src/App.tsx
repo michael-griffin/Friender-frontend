@@ -44,6 +44,11 @@ function App() {
     setUser(newUser);
   }
 
+  async function addImage(formData) {
+    const newUser = await FrienderAPI.addProfileImage(formData, user.username);
+    setUser(newUser)
+  }
+
   useEffect(function getUserData(){
     async function fetchUserData(){
       if (token){
@@ -68,7 +73,7 @@ function App() {
         <userContext.Provider value={{ user, token }}>
           <BrowserRouter>
             <Navbar logout={logout} user={user}/>
-            <RoutesList user={user} signup={signup} login={login} update={update}/>
+            <RoutesList user={user} signup={signup} login={login} update={update} addImage={addImage}/>
           </BrowserRouter>
         </userContext.Provider>
         :

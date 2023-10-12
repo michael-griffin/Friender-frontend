@@ -5,6 +5,7 @@ import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 import Profile from "./Profile";
 import ProfileForm from "./ProfileForm";
+import ProfileImageform from "./ProfileImageForm";
 import { UserInterface } from "./interfaces";
 
 
@@ -13,9 +14,10 @@ interface RoutesListInterface {
   signup: ({ }) => void;
   login: ({ }) => void;
   update: ({ }) => void;
+  addImage: ({ })=> void;
 }
 
-function RoutesList({ user, signup, login, update }: RoutesListInterface) {
+function RoutesList({ user, signup, login, update, addImage }: RoutesListInterface) {
 
   return (
     <Routes>
@@ -24,6 +26,7 @@ function RoutesList({ user, signup, login, update }: RoutesListInterface) {
           <Route path="/" element={<Homepage />} />
           <Route path="/profile" element={<Profile user={user}/> } />
           <Route path="/profile/edit" element={<ProfileForm user={user} handleSubmit={update} />} />
+          <Route path='/profile/add-image' element={<ProfileImageform handleSubmit={addImage}/>} />
           <Route path="/people" element={<FriendList user={user} />} />
         </>
         :

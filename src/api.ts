@@ -76,6 +76,22 @@ class FrienderAPI {
 
     return data;
   }
+
+  static async addProfileImage(formData, username: string): Promise<UserInterface> {
+    const response = await fetch(`${BASE_URL}/users/${username}/image`, {
+      method: 'POST',
+      body: formData,
+      headers: {'token': this.token}
+    })
+
+    const data = await response.json()
+
+    if(data.error) {
+      throw new Error(data.error)
+    }
+
+    return data;
+  };
 }
 
 export default FrienderAPI;
