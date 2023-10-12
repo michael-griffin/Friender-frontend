@@ -1,5 +1,5 @@
 function Homepage() {
-    return (<div>
+    return (<div className="HomePage">
         <h1>Friender</h1>
     </div>)
 }

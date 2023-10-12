@@ -4,7 +4,7 @@ import './Navbar.css'
 function Navbar({user, logout}) {
 
 
-    return(<nav className='Navbar'>
+    return(<nav className='Navbar text-accent'>
         <Link to="/"><h1 className='Navbar-logo'>Friender</h1></Link>
         <div className='Navbar-links'>
             {!user && <>

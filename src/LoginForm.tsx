@@ -1,6 +1,5 @@
-
+import "./LoginForm.css";
 import React, { useState } from "react";
-
 import { LoginInterface } from "./interfaces";
 
 interface LoginFormProps {
@@ -30,17 +29,22 @@ function LoginForm({ handleSubmit }: LoginFormProps) {
 
   return (
     <>
-      <form onSubmit={submitForm}>
-        <label htmlFor="username">Username</label>
-        <input type="text" onChange={handleChange}
-          name="username"
-          value={formData.username}
-        />
-        <label htmlFor="password">Password</label>
-        <input type="password" onChange={handleChange}
-          name="password"
-          value={formData.password}
-        />
+      <form className="LoginForm" onSubmit={submitForm}>
+        <div className="form-input-container">
+          <label htmlFor="username">Username</label>
+          <input type="text" onChange={handleChange}
+            name="username"
+            value={formData.username}
+          />
+        </div>
+
+        <div className="form-input-container">
+          <label htmlFor="password">Password</label>
+          <input type="password" onChange={handleChange}
+            name="password"
+            value={formData.password}
+          />
+        </div>
         <button type="submit">Login</button>
       </form>
     </>

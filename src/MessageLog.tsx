@@ -13,6 +13,8 @@ function MessageLog ({ user } ){
   const [messages, setMessages] = useState([])
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const [messageCount, setMessageCount] = useState(messages.length);
+
   useEffect(function getMessages() {
     async function fetchMessages() {
       const messages = await FrienderAPI.getMessages(user.username, matchName);
@@ -20,7 +22,7 @@ function MessageLog ({ user } ){
       setIsLoaded(true);
     }
     fetchMessages()
-  }, [])
+  }, [messageCount])
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -31,9 +33,10 @@ function MessageLog ({ user } ){
     evt.preventDefault();
     await FrienderAPI.addMessage(user.username, matchName, messageText);
     setMessageText("");
+    setMessageCount(prevCount => prevCount + 1);
   }
 
-  //FIXME: still need to have the log of messages already written.
+
   return (<>
     {isLoaded ? messages.map(msg => <p key={msg.id}>{msg.message}, from: {msg.sender}</p>)
               :
