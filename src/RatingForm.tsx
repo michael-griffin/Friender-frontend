@@ -1,13 +1,18 @@
 
 
-function RatingForm() {
+function RatingForm({rater, rated, handleRating}) {
 
-    return (
-        <div className="RatingForm">
-            <button>Like</button>
-            <button>Dislike</button>
-        </div>
-    )
+  function handleClick(evt) {
+    let isLiked = Boolean(evt.target.dataset.isliked);
+    handleRating(rater, rated, isLiked);
+  }
+
+  return (
+    <div className="RatingForm">
+      <button data-isliked="true" onClick={handleClick}>Like</button>
+      <button data-isliked="false" onClick={handleClick}>Dislike</button>
+    </div>
+  );
 }
 
 

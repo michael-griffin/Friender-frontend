@@ -17,7 +17,6 @@ class FrienderAPI {
     const data = await response.json();
 
     if (data.error) {
-
       throw new Error(data.error);
     }
 
@@ -28,9 +27,17 @@ class FrienderAPI {
 
   // }
 
-  // static async getNearMe(username: string): Promise<UserInterface[]>{
+  static async getNearMe(username: string): Promise<UserInterface[]>{
+    const response = await fetch(`${BASE_URL}/users/${username}/nearme`, {
+      method: 'GET',
+      headers: {'token': this.token }
+    })
 
-  // }
+    const data = await response.json();
+    if (data.error) throw new Error(data.error);
+
+    return data.eligible;
+  }
 
   static async signupUser(formData: SignupInterface): Promise<string> {
     const response = await fetch(`${BASE_URL}/signup`, {
@@ -92,6 +99,18 @@ class FrienderAPI {
 
     return data;
   };
+
+  static async rateUser(rater, rated, isLiked): Promise<void> {
+    const response = await fetch(`${BASE_URL}/rating`, {
+      method: 'POST',
+      body: JSON.stringify({
+        "user_who_rated": rater,
+        "user_being_rated": rated,
+        "is_liked": isLiked
+      }),
+      headers: {'Content-Type': 'application/json', 'token': this.token}
+    })
+  }
 }
 
 export default FrienderAPI;

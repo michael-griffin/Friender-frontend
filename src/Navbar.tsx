@@ -13,6 +13,7 @@ function Navbar({user, logout}) {
             </>}
             {user &&
             <>
+                <NavLink to="/people">Possible Friends</NavLink>
                 <NavLink to='/profile'>Profile</NavLink>
                 <button onClick={logout}>Logout</button>
             </>

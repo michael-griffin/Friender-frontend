@@ -7,7 +7,7 @@ import FrienderAPI from './api';
 import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from './interfaces';
 import RoutesList from "./RoutesList";
 import Navbar from './Navbar';
-import IsLoading from './isLoading';
+import IsLoading from './IsLoading';
 
 
 function App() {
@@ -44,10 +44,12 @@ function App() {
     setUser(newUser);
   }
 
+
   async function addImage(formData) {
     const newUser = await FrienderAPI.addProfileImage(formData, user.username);
     setUser(newUser)
   }
+
 
   useEffect(function getUserData(){
     async function fetchUserData(){
