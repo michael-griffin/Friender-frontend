@@ -7,13 +7,13 @@ function FriendList({ user }: {user: UserInterface}) {
 
   const [users, setUsers] = useState(null);
 
-  useEffect(function getUsers() {
-    async function fetchUsers() {
-      const eligibleUsers = await FrienderAPI.getNearMe(user.username);
-      setUsers(eligibleUsers);
-    }
-    fetchUsers();
-  }, [user])
+  // useEffect(function getUsers() {
+  //   async function fetchUsers() {
+  //     const eligibleUsers = await FrienderAPI.getNearMe(user.username);
+  //     setUsers(eligibleUsers);
+  //   }
+  //   fetchUsers();
+  // }, [user])
 
 
   return (

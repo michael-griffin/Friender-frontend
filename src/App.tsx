@@ -40,7 +40,7 @@ function App() {
   }
 
   async function update(formData: UpdateInterface){
-    const newUser = await FrienderAPI.updateUser(formData);
+    const newUser = await FrienderAPI.updateUser(formData, user.username);
     setUser(newUser);
   }
 
@@ -64,10 +64,10 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar logout={logout} user={user}/>
       {isLoaded ?
         <userContext.Provider value={{ user, token }}>
           <BrowserRouter>
+            <Navbar logout={logout} user={user}/>
             <RoutesList user={user} signup={signup} login={login} update={update}/>
           </BrowserRouter>
         </userContext.Provider>
