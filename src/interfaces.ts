@@ -8,8 +8,13 @@ interface UserInterface {
   images: string[]
 }
 
-interface SignupInterface extends UserInterface {
-  password: string
+interface SignupInterface {
+  username: string;
+  password: string;
+  hobbies: string;
+  interests: string;
+  location: number | null;
+  radius: number | null;
 }
 
 interface LoginInterface {

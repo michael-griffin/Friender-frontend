@@ -16,6 +16,10 @@ class FrienderAPI {
 
   }
 
+  static async getNearMe(username: string): Promise<UserInterface[]>{
+
+  }
+
   static async signupUser(formData: SignupInterface): Promise<string> {
 
   }
