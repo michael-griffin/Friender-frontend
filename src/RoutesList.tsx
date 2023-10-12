@@ -7,6 +7,7 @@ import Profile from "./Profile";
 import ProfileForm from "./ProfileForm";
 import ProfileImageform from "./ProfileImageForm";
 import { UserInterface } from "./interfaces";
+import MatchesList from "./MatchesList";
 
 
 interface RoutesListInterface {
@@ -28,6 +29,7 @@ function RoutesList({ user, signup, login, update, addImage }: RoutesListInterfa
           <Route path="/profile/edit" element={<ProfileForm user={user} handleSubmit={update} />} />
           <Route path='/profile/add-image' element={<ProfileImageform handleSubmit={addImage}/>} />
           <Route path="/people" element={<FriendList user={user} />} />
+          <Route path='/matches' element={<MatchesList user={user} />} />
         </>
         :
         <>

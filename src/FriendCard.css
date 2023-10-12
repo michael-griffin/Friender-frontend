@@ -1,0 +1,8 @@
+.FriendCard {
+  width: 35vw;
+  margin: auto;
+}
+
+.FriendCard >img {
+  width: 80%
+}

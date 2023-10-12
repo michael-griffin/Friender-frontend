@@ -1,11 +1,4 @@
-
-
-// interface FriendCardProps {
-//     username: string;
-//     hobbies: string;
-//     interests: string;
-//     images: string[]
-// }
+// import './FriendCard.css'
 
 function FriendCard( {user} ){
     const {username, hobbies, interests, image_urls} = user;

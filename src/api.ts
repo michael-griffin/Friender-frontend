@@ -1,4 +1,3 @@
-import { Sign } from "crypto";
 import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from "./interfaces";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
@@ -23,9 +22,17 @@ class FrienderAPI {
     return data;
   }
 
-  // static async getMatches(){
+  static async getMatches(username: string): Promise<UserInterface[]>{
+    const response = await fetch(`${BASE_URL}/users/${username}/matches`, {
+      method: 'GET',
+      headers: {'token': this.token}
+    })
 
-  // }
+    const data = await response.json()
+    if (data.error) throw new Error(data.error);
+
+    return data.matches;
+  }
 
   static async getNearMe(username: string): Promise<UserInterface[]>{
     const response = await fetch(`${BASE_URL}/users/${username}/nearme`, {

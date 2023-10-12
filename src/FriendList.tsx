@@ -3,7 +3,7 @@ import { UserInterface } from "./interfaces";
 import { useState, useEffect } from "react";
 import FriendCard from "./FriendCard";
 import RatingForm from "./RatingForm";
-import IsLoading from './IsLoading';
+import IsLoading from "./IsLoading";
 import FrienderAPI from "./api";
 
 interface FriendListProps {
