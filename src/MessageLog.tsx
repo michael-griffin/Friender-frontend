@@ -1,6 +1,7 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
 import FrienderAPI from "./api";
+import IsLoading from "./IsLoading";
 
 
 function MessageLog ({ user } ){
@@ -9,10 +10,17 @@ function MessageLog ({ user } ){
   const {matchName } = params;
 
   const [messageText, setMessageText] = useState("");
+  const [messages, setMessages] = useState([])
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  //message list
-
-  //add new message form
+  useEffect(function getMessages() {
+    async function fetchMessages() {
+      const messages = await FrienderAPI.getMessages(user.username, matchName);
+      setMessages(messages);
+      setIsLoaded(true);
+    }
+    fetchMessages()
+  }, [])
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -26,8 +34,10 @@ function MessageLog ({ user } ){
   }
 
   //FIXME: still need to have the log of messages already written.
-  return (
-
+  return (<>
+    {isLoaded ? messages.map(msg => <p key={msg.id}>{msg.message}, from: {msg.sender}</p>)
+              :
+                <IsLoading />}
     <form onSubmit={submitMessage}>
       <textarea
         name="message"
@@ -37,6 +47,7 @@ function MessageLog ({ user } ){
       />
       <button type="submit">Post</button>
     </form>
+    </>
   )
 }
 

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import { UserInterface } from './interfaces';
 import FrienderAPI from './api';
-import FriendCard from './FriendCard';
+import MatchCard from './MatchCard';
 import IsLoading from './IsLoading';
 
 interface MatchListProps {

@@ -119,6 +119,17 @@ class FrienderAPI {
     })
   }
 
+  static async getMessages(username: string, otherUsername: string) {
+    const response = await fetch(`${BASE_URL}/users/${username}/messages/${otherUsername}`, {
+      method: 'GET',
+      headers: {'token': this.token}
+    })
+
+    const data= await response.json()
+
+    return data.messages;
+  }
+
   static async addMessage(sender, receiver, message): Promise<void> {
     const response = await fetch(`${BASE_URL}/users/${sender}/message`, {
       method: 'POST',

@@ -8,6 +8,7 @@ import ProfileForm from "./ProfileForm";
 import ProfileImageform from "./ProfileImageForm";
 import { UserInterface } from "./interfaces";
 import MatchesList from "./MatchesList";
+import MessageLog from "./MessageLog";
 
 
 interface RoutesListInterface {
