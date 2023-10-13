@@ -3,7 +3,7 @@ import './FriendCard.css';
 function FriendCard( {user} ){
     const {username, hobbies, interests, image_urls, distance} = user;
 
-    const profilePic = image_urls[0] || './default-profile-pic.jpg'
+    const profilePic = image_urls[image_urls.length - 1] || './default-profile-pic.jpg'
 
     return (
         <div className="FriendCard">
@@ -15,9 +15,6 @@ function FriendCard( {user} ){
         </div>
     )
 }
-
-
-
 
 
 export default FriendCard;
