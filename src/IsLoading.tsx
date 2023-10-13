@@ -1,7 +1,9 @@
+import './IsLoading.css'
+
 function IsLoading() {
   return (
-    <div>
-
+    <div className='IsLoading'>
+      <div className='IsLoading-spinner'></div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-
+import './RatingForm.css'
 
 function RatingForm({rater, rated, handleRating}) {
 
@@ -9,8 +9,8 @@ function RatingForm({rater, rated, handleRating}) {
 
   return (
     <div className="RatingForm">
-      <button data-isliked="true" onClick={handleClick}>Like</button>
-      <button data-isliked="false" onClick={handleClick}>Dislike</button>
+      <button className='like text-accent' data-isliked="true" onClick={handleClick}>Like</button>
+      <button className='dislike text-accent' data-isliked="false" onClick={handleClick}>Dislike</button>
     </div>
   );
 }

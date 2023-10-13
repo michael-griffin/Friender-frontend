@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
 import FrienderAPI from "./api";
 import IsLoading from "./IsLoading";
+import './MessageLog.css'
 
 
 function MessageLog ({ user } ){
@@ -13,16 +14,16 @@ function MessageLog ({ user } ){
   const [messages, setMessages] = useState([])
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [messageCount, setMessageCount] = useState(messages.length);
-
   useEffect(function getMessages() {
-    async function fetchMessages() {
-      const messages = await FrienderAPI.getMessages(user.username, matchName);
-      setMessages(messages);
-      setIsLoaded(true);
-    }
     fetchMessages()
-  }, [messageCount])
+  }, [])
+
+
+  async function fetchMessages() {
+    const messages = await FrienderAPI.getMessages(user.username, matchName);
+    setMessages(messages);
+    setIsLoaded(true);
+  }
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -33,24 +34,27 @@ function MessageLog ({ user } ){
     evt.preventDefault();
     await FrienderAPI.addMessage(user.username, matchName, messageText);
     setMessageText("");
-    setMessageCount(prevCount => prevCount + 1);
+    fetchMessages();
   }
 
 
-  return (<>
-    {isLoaded ? messages.map(msg => <p key={msg.id}>{msg.message}, from: {msg.sender}</p>)
+  return (<div className='MessageLog'>
+    {isLoaded ? <div className='MessageLog-field'>
+                  {messages.map(msg =>
+                  <p className='MessageLog-message' key={msg.id}><span className='MessageLog-from'> {msg.sender}: </span>{msg.message}</p>)}
+                </div>
               :
                 <IsLoading />}
-    <form onSubmit={submitMessage}>
+    <form onSubmit={submitMessage} className='MessageLog-form'>
       <textarea
         name="message"
         value={messageText}
         placeholder="Type message"
         onChange={handleChange}
       />
-      <button type="submit">Post</button>
+      <button className='MatchCard-button' type="submit">Post</button>
     </form>
-    </>
+    </div>
   )
 }
 

@@ -13,11 +13,8 @@ interface FriendListProps {
 function FriendList({ user }: FriendListProps) {
 
   const [users, setUsers] = useState(null);
-  // const [ratedCount, setRatedCount] = useState(0);
 
   const currUser = users ? users[0] : undefined;
-
-  //currUser
 
   useEffect(function getUsers() {
     async function fetchUsers() {
@@ -34,7 +31,6 @@ function FriendList({ user }: FriendListProps) {
       const newUsers = prevUsers.filter(user => user.username !== rated);
       return newUsers;
     })
-    // setRatedCount(prevCount => prevCount + 1);
   }
 
   if (users !== null && users.length === 0){

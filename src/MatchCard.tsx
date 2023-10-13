@@ -1,4 +1,4 @@
-// import './FriendCard.css'
+import './MatchCard.css'
 import {Link} from "react-router-dom";
 import FriendCard from "./FriendCard";
 function MatchCard( {user, match} ){
@@ -8,7 +8,7 @@ function MatchCard( {user, match} ){
   return (
     <>
       <FriendCard user={match} />
-      <Link to={`/messages/${match.username}`}><button>View Messages</button></Link>
+      <Link to={`/messages/${match.username}`}><button className="MatchCard-button">View Messages</button></Link>
     </>
   )
 }
