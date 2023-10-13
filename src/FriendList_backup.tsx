@@ -13,9 +13,9 @@ interface FriendListProps {
 function FriendList({ user }: FriendListProps) {
 
   const [users, setUsers] = useState(null);
-  // const [ratedCount, setRatedCount] = useState(0);
+  const [ratedCount, setRatedCount] = useState(0);
 
-  const currUser = users ? users[0] : undefined;
+  const currUser = users[0];
 
   //currUser
 
@@ -25,30 +25,19 @@ function FriendList({ user }: FriendListProps) {
       setUsers(eligibleUsers);
     }
     fetchUsers();
-  }, [])
+  }, [ratedCount])
 
 
   async function rateUser(rater, rated, isLiked){
     await FrienderAPI.rateUser(rater, rated, isLiked);
-    setUsers(prevUsers => {
-      const newUsers = prevUsers.filter(user => user.username !== rated);
-      return newUsers;
-    })
-    // setRatedCount(prevCount => prevCount + 1);
-  }
-
-  if (users !== null && users.length === 0){
-    return (
-      <div className="FriendList">
-        <p>You have run out of people to rate =(</p>
-      </div>
-    )
+    setRatedCount(prevCount => prevCount + 1);
   }
 
   return (
     <div className="FriendList">
       {users ?
-        <div className="FriendList-container" key={`${currUser.username}-container`} >
+      users.map((currUser) => (
+        <div className="FriendList-container"  key={`${currUser.username}-container`} >
           <FriendCard key={`${currUser.username}-FriendCard`} user={currUser} />
           <RatingForm
             key={`${currUser.username}-RatingForm`}
@@ -56,6 +45,8 @@ function FriendList({ user }: FriendListProps) {
             rated={currUser.username}
             handleRating={rateUser} />
         </div>
+
+      ))
       :
       <IsLoading />
       }
