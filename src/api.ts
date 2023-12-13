@@ -1,6 +1,8 @@
 import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from "./interfaces";
 
+
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
+
 
 class FrienderAPI {
 
@@ -107,7 +109,8 @@ class FrienderAPI {
   };
 
   static async rateUser(rater:string , rated: string, isLiked:string): Promise<void> {
-    const response = await fetch(`${BASE_URL}/rating`, {
+    //originally: const response =
+    await fetch(`${BASE_URL}/rating`, {
       method: 'POST',
       body: JSON.stringify({
         "user_who_rated": rater,
@@ -130,7 +133,8 @@ class FrienderAPI {
   }
 
   static async addMessage(sender:string , receiver:string , message: string): Promise<void> {
-    const response = await fetch(`${BASE_URL}/users/${sender}/message`, {
+    //originally const response =
+    await fetch(`${BASE_URL}/users/${sender}/message`, {
       method: 'POST',
       body: JSON.stringify({
         sender,
