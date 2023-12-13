@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import FriendCard from "./FriendCard";
 function MatchCard( {user, match} ){
 
-  const {username, hobbies, interests, image_urls} = match;
+  //const {username, hobbies, interests, image_urls} = match;
 
   return (
     <>

@@ -17,7 +17,7 @@ function MatchesList({user}: MatchListProps) {
             setMatches(matches);
           }
           fetchMatches();
-    }, [])
+    }, [user])
 
     return(<div>
         <h2>Matches:</h2>

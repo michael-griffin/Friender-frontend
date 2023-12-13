@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 interface ProfileImageFormProps {
+    // eslint-disable-next-line no-empty-pattern
     handleSubmit: ({ }) => void;
 }
 

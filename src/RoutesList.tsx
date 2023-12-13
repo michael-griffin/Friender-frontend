@@ -13,9 +13,10 @@ import MessageLog from "./MessageLog";
 
 interface RoutesListInterface {
   user: UserInterface | null;
-  signup: ({ }) => void;
-  login: ({ }) => void;
-  update: ({ }) => void;
+  signup: (SignupInterface) => void;
+  login: (LoginInterface) => void;
+  update: (UpdateInterface) => void;
+  // eslint-disable-next-line no-empty-pattern
   addImage: ({ })=> void;
 }
 

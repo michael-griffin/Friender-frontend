@@ -22,7 +22,7 @@ function FriendList({ user }: FriendListProps) {
       setUsers(eligibleUsers);
     }
     fetchUsers();
-  }, [])
+  }, [user])
 
 
   async function rateUser(rater, rated, isLiked){

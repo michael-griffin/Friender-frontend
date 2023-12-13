@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useCallback} from "react";
 import {useParams} from "react-router-dom";
 import FrienderAPI from "./api";
 import IsLoading from "./IsLoading";
@@ -14,27 +14,27 @@ function MessageLog ({ user } ){
   const [messages, setMessages] = useState([])
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(function getMessages() {
-    fetchMessages()
-  }, [])
-
-
-  async function fetchMessages() {
+  //Necessary for linter (concerned about useEffect dependencies)
+  const fetchMessages = useCallback(async function() {
     const messages = await FrienderAPI.getMessages(user.username, matchName);
     setMessages(messages);
     setIsLoaded(true);
-  }
+  }, [user, matchName])
 
-  function handleChange(evt){
-    const {name, value} = evt.target;
-    setMessageText(value);
-  }
+  useEffect(function getMessages() {
+    fetchMessages()
+  }, [fetchMessages])
 
   async function submitMessage(evt){
     evt.preventDefault();
     await FrienderAPI.addMessage(user.username, matchName, messageText);
     setMessageText("");
     fetchMessages();
+  }
+
+  function handleChange(evt){
+    const {value} = evt.target; // const {name, value}
+    setMessageText(value);
   }
 
 
